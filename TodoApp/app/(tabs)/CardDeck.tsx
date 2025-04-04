@@ -13,15 +13,15 @@ const { width, height } = Dimensions.get('window');
 const SWIPE_THRESHOLD = width * 0.25;
 
 const CardDeck = () => {
-    const [cards, setCards] = useState([1, 2, 3, 4, 5]); // Масив карток (можна замінити на реальні дані)
+    const [cards, setCards] = useState([1, 2, 3, 4, 5]); 
 
-    // Індивідуальні анімаційні значення для верхньої картки
+   
     const translateX = useSharedValue(0);
     const translateY = useSharedValue(0);
     const rotate = useSharedValue(0);
 
     const onSwipeComplete = () => {
-        // Переміщуємо карту в кінець колоди
+      
         setCards((prevCards) => {
             const updatedCards = [...prevCards];
             const firstCard = updatedCards.shift();
@@ -31,7 +31,7 @@ const CardDeck = () => {
             return updatedCards;
         });
 
-        // Скидаємо анімаційні значення
+       
         translateX.value = 0;
         translateY.value = 0;
         rotate.value = 0;
@@ -45,17 +45,17 @@ const CardDeck = () => {
         onActive: (event, ctx) => {
             translateX.value = ctx.startX + event.translationX;
             translateY.value = ctx.startY + event.translationY;
-            rotate.value = (event.translationX / width) * 25; // Обертання залежить від жесту
+            rotate.value = (event.translationX / width) * 25; 
         },
         onEnd: (event) => {
             if (Math.abs(event.translationX) > SWIPE_THRESHOLD) {
-                // Якщо карта переміщена на достатню відстань, вона вилітає
+                
                 translateX.value = withSpring(event.translationX > 0 ? width : -width, {}, () => {
                     runOnJS(onSwipeComplete)();
                 });
                 translateY.value = withSpring(event.translationY);
             } else {
-                // Якщо карта переміщена на невелику відстань, вона повертається назад
+                
                 translateX.value = withSpring(0);
                 translateY.value = withSpring(0);
                 rotate.value = withSpring(0);
@@ -86,7 +86,7 @@ const CardDeck = () => {
                             <Animated.View
                                 style={[
                                     styles.card,
-                                    isTopCard ? animatedStyle : undefined, // Анімація лише для верхньої картки
+                                    isTopCard ? animatedStyle : undefined, 
                                     { zIndex: isTopCard ? 1 : 0 },
                                 ]}
                             >
@@ -137,10 +137,10 @@ const styles = StyleSheet.create({
     cardSuit: {
         fontSize: 48,
         fontWeight: 'bold',
-        color: 'red', // Червоний колір для масті
+        color: 'red',
     },
     cardBack: {
-        backgroundColor: 'red', // Червоний фон для зворотної сторони карти
+        backgroundColor: 'red', 
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
