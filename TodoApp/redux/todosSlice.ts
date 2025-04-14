@@ -4,7 +4,7 @@ interface Todo {
     id: string;
     title: string;
     status: 'active' | 'done';
-    deadline?: number; // дедлайн у вигляді мітки часу (timestamp)
+    deadline?: number; 
 }
 
 interface TodosState {

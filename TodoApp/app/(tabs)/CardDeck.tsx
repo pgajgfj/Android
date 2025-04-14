@@ -21,7 +21,7 @@ const CardDeck = () => {
     const rotate = useSharedValue(0);
 
     const onSwipeComplete = () => {
-      
+        
         setCards((prevCards) => {
             const updatedCards = [...prevCards];
             const firstCard = updatedCards.shift();
@@ -31,7 +31,7 @@ const CardDeck = () => {
             return updatedCards;
         });
 
-       
+      
         translateX.value = 0;
         translateY.value = 0;
         rotate.value = 0;
@@ -86,7 +86,7 @@ const CardDeck = () => {
                             <Animated.View
                                 style={[
                                     styles.card,
-                                    isTopCard ? animatedStyle : undefined, 
+                                    isTopCard ? animatedStyle : undefined, // Анімація лише для верхньої картки
                                     { zIndex: isTopCard ? 1 : 0 },
                                 ]}
                             >
@@ -137,10 +137,10 @@ const styles = StyleSheet.create({
     cardSuit: {
         fontSize: 48,
         fontWeight: 'bold',
-        color: 'red',
+        color: 'red', // Червоний колір для масті
     },
     cardBack: {
-        backgroundColor: 'red', 
+        backgroundColor: 'red', // Червоний фон для зворотної сторони карти
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

@@ -3,20 +3,20 @@ import { View, Button, StyleSheet } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, interpolateColor } from 'react-native-reanimated';
 
 const ProgressBar = () => {
-    const [progress, setProgress] = useState(0); // Локальний стан для відображення %
-    const animatedProgress = useSharedValue(0); // Анімоване значення
+    const [progress, setProgress] = useState(0); 
+    const animatedProgress = useSharedValue(0); 
 
     const handleNext = () => {
-        const newProgress = progress === 100 ? 0 : progress + 25; // Збільшення на 25% або скидання
+        const newProgress = progress === 100 ? 0 : progress + 25; 
         setProgress(newProgress);
-        animatedProgress.value = withTiming(newProgress, { duration: 500 }); // Плавна анімація
+        animatedProgress.value = withTiming(newProgress, { duration: 500 }); 
     };
 
     const animatedStyle = useAnimatedStyle(() => {
         const backgroundColor = interpolateColor(
             animatedProgress.value,
             [0, 50, 100],
-            ['#ff0000', '#ffff00', '#00ff00'] // Червоний -> Жовтий -> Зелений
+            ['#ff0000', '#ffff00', '#00ff00'] 
         );
 
         return {
